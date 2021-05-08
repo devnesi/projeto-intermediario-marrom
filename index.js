@@ -8,7 +8,7 @@ app.get('/olx/terrenos', (req, res) => {
     const retorno = {}
     const lotes = []
     var page = req.query.page
-    var q = req.query.q
+    const q = req.query.q
     
     page = page === undefined ? 'https://sc.olx.com.br/florianopolis-e-regiao/outras-cidades/criciuma/imoveis/terrenos' : 'https://sc.olx.com.br/florianopolis-e-regiao/outras-cidades/criciuma/imoveis/terrenos?o=' + page
     axios.get(page).then(response => {
@@ -24,7 +24,6 @@ app.get('/olx/terrenos', (req, res) => {
         items.map(item => {
             const href = xpath.select('./a[@data-lurker-detail="list_id"]/@href', item)
             if (href.length == 0) return
-
             const lote = {
                 href: href[0].value,
                 title: xpath.select('./a[@data-lurker-detail="list_id"]/@title', item)[0].value,
@@ -38,10 +37,6 @@ app.get('/olx/terrenos', (req, res) => {
             } else {
                 lotes.push(lote)
             }
-            
-            
-
-            
         })
         retorno.results = lotes
         res.send(retorno)
@@ -52,7 +47,7 @@ app.get('/olx/terrenos', (req, res) => {
 app.get('/olx/carros', (req, res) => {
     const retorno = {}
     const carros = []
-    var q = req.query.q
+    const q = req.query.q
     var page = req.query.page
     page = page === undefined ? 'https://sc.olx.com.br/florianopolis-e-regiao/outras-cidades/criciuma/autos-e-pecas/carros-vans-e-utilitarios' : 'https://sc.olx.com.br/florianopolis-e-regiao/outras-cidades/criciuma/autos-e-pecas/carros-vans-e-utilitarios?o=' + page
     axios.get(page).then(response => {
@@ -81,9 +76,7 @@ app.get('/olx/carros', (req, res) => {
                 }
             } else {
                 carros.push(carro)
-            }
-
-            
+            }  
         })
         retorno.results = carros
         res.send(retorno)
