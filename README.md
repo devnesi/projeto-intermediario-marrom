@@ -5,7 +5,7 @@ end points
 2. /olx/carros
 
 parametros em ambos  
-inteiro page = paginacao para recuperar mais informacacoes  
+inteiro page = paginacao para recuperar mais informações  
 string q = query string para filtrar no campo title 
 ##
 
